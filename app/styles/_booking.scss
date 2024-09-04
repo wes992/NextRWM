@@ -1,0 +1,51 @@
+.booking {
+  padding: 20px;
+  border: 1px solid $light-gray;
+
+  .form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .btn-confirm {
+    background-color: #ff5a5f;
+    font-size: 17px;
+    font-weight: 700;
+    width: 100%;
+  }
+
+  .react-datepicker-wrapper {
+    display: block;
+  }
+
+  label {
+    font-size: 12px;
+    font-weight: 300;
+    margin-bottom: 0;
+  }
+
+  &-price {
+    font-size: 22px;
+    font-weight: 700;
+
+    & span {
+      margin-left: 0.5rem;
+    }
+  }
+
+  &-per-night {
+    font-size: 13px;
+    font-weight: 300;
+  }
+
+  &-note-title {
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+
+  &-note-text {
+    font-size: 13px;
+    font-weight: 300;
+  }
+}

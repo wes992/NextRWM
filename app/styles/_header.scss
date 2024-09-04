@@ -1,0 +1,30 @@
+@import "./colors";
+
+.navbar {
+  padding: 10px 30px;
+
+  .navbar-brand {
+    margin-right: 30px;
+    font-size: 27px;
+    letter-spacing: 1px;
+    color: $main-color;
+    font-weight: bold;
+  }
+
+  .navbar-nav {
+    margin-left: auto;
+  }
+
+  .nav-item {
+    font-size: 18px;
+  }
+  .rwm-search {
+    height: 40px;
+    width: 250px;
+  }
+
+  .form-inline {
+    display: flex;
+    gap: 1rem;
+  }
+}
