@@ -1,10 +1,12 @@
-import { getSession, logout } from "@/lib/auth";
+"use client";
+
 import NavLink from "next/link";
-import React from "react";
+import React, { useState } from "react";
 
-const Header = async () => {
-  const isLoggedIn = (await getSession()) || false;
+const Header = ({ isLoggedIn, onSearchAction, logout }) => {
+  const [searchResults, setSearchResults] = useState([]);
 
+  console.log({ searchResults });
   return (
     <>
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -12,7 +14,7 @@ const Header = async () => {
           RentWithMe
         </NavLink>
         <button
-          className="navbar-toggler"
+          className="navbar-toggler collapsed"
           type="button"
           data-toggle="collapse"
           data-target="#navbarSupportedContent"
@@ -23,8 +25,15 @@ const Header = async () => {
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          <form className="form-inline my-2 my-lg-0">
+          <form
+            action={async (e) => {
+              const result = await onSearchAction(e);
+              setSearchResults(result);
+            }}
+            className="form-inline my-2 my-lg-0"
+          >
             <input
+              name="searchInput"
               className="form-control mr-sm-2 rwm-search"
               type="search"
               placeholder="Search"

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { useLoadScript } from "@react-google-maps/api";
+import { useJsApiLoader } from "@react-google-maps/api";
 
 const locationCache = {};
 
@@ -17,9 +17,9 @@ function isLocationCached(location) {
 }
 
 export const useMapLibs = (libs) => {
-  const libraries = useMemo(() => libs, [libs]);
+  const libraries = useMemo(() => libs, []);
 
-  const { isLoaded } = useLoadScript({
+  const { isLoaded } = useJsApiLoader({
     googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_KEY,
     libraries,
   });
