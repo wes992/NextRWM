@@ -5,8 +5,11 @@ import { useForm } from "react-hook-form";
 import { emailRegex } from "./utils";
 import { registerUser } from "@/lib/controllers/user";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 const Register = () => {
+  const router = useRouter();
+  const navigate = (route, options) => router.push(route, options);
   const {
     register,
     handleSubmit,
@@ -18,7 +21,21 @@ const Register = () => {
   const [submitError, setSubmitError] = useState("");
 
   const onSubmit = async (formData) => {
-    const result = await registerUser(formData);
+    // const result = await registerUser(formData);
+
+    const result = await fetch("/api/register", {
+      method: "POST",
+      body: JSON.stringify(formData),
+    });
+
+    if (result.ok) {
+      navigate("/login");
+      // , {
+      //   state: { notification: "Registered successfully, go ahead and login" },
+      // }
+    } else {
+      setSubmitError(result);
+    }
 
     // if (result.success) {
     //   navigate("/login", {

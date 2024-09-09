@@ -6,7 +6,6 @@ import React, { useState } from "react";
 const Header = ({ isLoggedIn, onSearchAction, logout }) => {
   const [searchResults, setSearchResults] = useState([]);
 
-  console.log({ searchResults });
   return (
     <>
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -25,7 +24,7 @@ const Header = ({ isLoggedIn, onSearchAction, logout }) => {
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          <form
+          {/* <form
             action={async (e) => {
               const result = await onSearchAction(e);
               setSearchResults(result);
@@ -45,7 +44,7 @@ const Header = ({ isLoggedIn, onSearchAction, logout }) => {
             >
               Search
             </button>
-          </form>
+          </form> */}
           <ul className="navbar-nav ml-auto">
             {/* <li className="nav-item">
               <NavLink className="nav-link" href="/">

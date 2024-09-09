@@ -1,10 +1,10 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { emailRegex } from "../register/utils";
-import { loginUser } from "@/lib/controllers/user";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 const LoginForm = () => {
   const {
@@ -12,26 +12,32 @@ const LoginForm = () => {
     handleSubmit,
     formState: { errors, isSubmitting },
   } = useForm();
+  const router = useRouter();
+  const navigate = (route) => router.push(route);
+  // const location =
 
   const [submitError, setSubmitError] = useState("");
 
   const handleLogin = async (formData) => {
-    const result = await loginUser(formData);
-    // if (result.success) {
-    //   setIsLoggedIn(true);
-    //   navigate("/");
-    // } else {
-    //   setSubmitError(result.error);
-    // }
+    const result = await fetch("/api/login", {
+      method: "POST",
+      body: JSON.stringify(formData),
+    });
+
+    if (result.ok) {
+      navigate("/rentals");
+    } else {
+      setSubmitError(result);
+    }
   };
 
-  // useEffect(() => {
-  //   const timeout = setTimeout(() => {
-  //     navigate("./", { replace: true });
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      router.replaceState("./", { state: {} });
 
-  //     return clearTimeout(timeout);
-  //   }, 3000);
-  // }, []);
+      return clearTimeout(timeout);
+    }, 3000);
+  }, []);
 
   return (
     <section id="login">
